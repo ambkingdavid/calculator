@@ -501,7 +501,6 @@ $(document).ready(function () {
 
     //The percentage function
 
-
     $(".percent").click(function () {
         const btn = $(".percent").val();
         const disp = $(".current-display").val()

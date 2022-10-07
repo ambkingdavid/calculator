@@ -54,3 +54,12 @@
     box-shadow: 0 5px white;
     transform: translateY(4px);
   }
+
+  .calc-form input:focus {
+    border: none;
+    outline: none;
+  }
+
+  .calc-form input {
+    border: none;
+  }
