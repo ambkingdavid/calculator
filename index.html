@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,46 +12,70 @@
     <script src="js/scripts.js"></script>
     <title>Document</title>
 </head>
+
 <body>
+
     
-       <div class="container">
-        <form  class="calc-form">
-            <input readonly="" class="current-display">
-            <input readonly="" class="previous-display" >
-        </form>
-       </div>
-
-       <!-- number buttons -->
-
-       <input type="button" class="btn border border-2 zero" value="0">
-       <input type="button" class="btn border border-2 one" value="1">
-       <input type="button" class="btn border border-2 two" value="2">
-       <input type="button" class="btn border border-2 three" value="3">
-       <input type="button" class="btn border border-2 four" value="4">
-       <input type="button" class="btn border border-2 five" value="5">
-       <input type="button" class="btn border border-2 six" value="6">
-       <input type="button" class="btn border border-2 seven" value="7">
-       <input type="button" class="btn border border-2 eight" value="8">
-       <input type="button" class="btn border border-2 nine" value="9">
-
-       <!-- special buttons -->
-
-       <input type="button" class="btn border border-2 int-minus" value="-">
-       <input type="button" class="btn border border-2 decimal" value=".">
-       <input type="button" class="btn border border-2 equate" value="=">
-       <input type="button" class="btn border border-2 clear" value="C">
-       <input type="button" class="btn border border-2 delete" value="del">
 
 
+<div class="container position-relative col-10 card back bg-warning mt-5">
+    <img src="img/m.jpg" class="img-fluid height" alt="">
+    <div class=" position-absolute pos card px-3">
+        <div class=" p-2">
+            <form class="calc-form">
+                <div class="row">
+                    <input readonly="" class="previous-display border-0 text-end fs-5">
+                    <input readonly="" class="current-display border-0 text-end fs-2">
+                </div>
+            </form>
+        </div>
 
-       <!-- operator buttons -->
 
-       <input type="button" class="btn border border-2 plus" value="+">
-       <input type="button" class="btn border border-2 minus" value="-">
-       <input type="button" class="btn border border-2 multiply" value="×">
-       <input type="button" class="btn border border-2 division" value="÷">
-       <input type="button" class="btn border border-2 percent" value="%">
-       
-    
+        <div class="mt-4 mb-3">
+            <div class="row ">
+                <input type="button" class=" border border-2 percent col button" value="%">
+                <input type="button" class=" border border-2 clear col button" value="C">
+                <input type="button" class=" border border-2 delete col button " value="del">
+                <input type="button" class=" border border-2 division col button" value="÷">
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <input type="button" class="border border-2 seven col button" value="7">
+                <input type="button" class="border border-2 eight col button" value="8">
+                <input type="button" class="border border-2 nine col button" value="9">
+                <input type="button" class="border border-2 multiply col button" value="×">
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <input type="button" class=" border border-2 four col button" value="4">
+                <input type="button" class=" border border-2 five col button" value="5">
+                <input type="button" class=" border border-2 six col button" value="6">
+                <input type="button" class=" border border-2 minus col button" value="-">
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <input type="button" class=" border border-2 one col button" value="1">
+                <input type="button" class=" border border-2 two col button" value="2">
+                <input type="button" class=" border border-2 three col button" value="3">
+                <input type="button" class=" border border-2 plus col button" value="+">
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <input type="button" class=" border border-2 int-minus col button" value="-">
+                <input type="button" class=" border border-2 zero button col button" value="0">
+                <input type="button" class=" border border-2 decimal col button" value=".">
+                <input type="button" class=" border border-2 equate col button" value="=">
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+
 </body>
+
 </html>
