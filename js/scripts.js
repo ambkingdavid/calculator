@@ -1,9 +1,32 @@
+function equateNone(num1, num2) {
+    result = parseFloat(num1) + parseFloat(num2);
+    return result
+}
+function slice(num1) {
+    uNum = num1.slice(0, -1);
+
+    return uNum
+}
+
 // function for final evaluation
 function equate(num1, num2) {
-    sign = num1[num1.length-1]
+    sign = num1[num1.length - 1]
     uNum = num1.slice(0, -1);
     if (sign == "+") {
-        addition = parseFloat(uNum) + parseFloat(num2) ;
+        result = parseFloat(uNum) + parseFloat(num2);
+        return result
+    }
+    else if (sign == "-") {
+        result = parseFloat(uNum) - parseFloat(num2);
+        return result
+    }
+    else if (sign == "×") {
+        result = parseFloat(uNum) * parseFloat(num2);
+        return result
+    }
+    else {
+        result = parseFloat(uNum) / parseFloat(num2);
+        return result
     }
 }
 
@@ -11,31 +34,37 @@ function equate(num1, num2) {
 //function to add numbers
 function add(num1, num2) {
     uNum = num1.slice(0, -1);
-    addition = parseFloat(uNum) + parseFloat(num2) ;
-    return addition + " " ;
+    addition = parseFloat(uNum) + parseFloat(num2);
+    return addition + " ";
 }
-   
+
 
 //function to subtract numbers
 function sub(num1, num2) {
     uNum = num1.slice(0, -1);
-    subtraction = parseFloat(uNum) - parseFloat(num2) ;
-    return subtraction + " " ;
+    subtraction = parseFloat(uNum) - parseFloat(num2);
+    return subtraction + " ";
 }
 
 //function to multiply numbers
 function multi(num1, num2) {
     uNum = num1.slice(0, -1);
-    multiplication = parseFloat(uNum) * parseFloat(num2) ;
-    return multiplication + " " ;
+    multiplication = parseFloat(uNum) * parseFloat(num2);
+    return multiplication + " ";
 }
 
 
 //function to divide numbers
 function divide(num1, num2) {
     uNum = num1.slice(0, -1);
-    division = parseFloat(uNum) / parseFloat(num2) ;
-    return division + " " ;
+    division = parseFloat(uNum) / parseFloat(num2);
+    return division + " ";
+}
+
+//function to calculate the percentage value of a number
+
+function percent(num) {
+    return parseInt(num) / 100;
 }
 
 
@@ -47,10 +76,12 @@ function deleteNumber(num) {
 function numberTest(m) {
     let result = (m - Math.floor(m)) !== 0;
 
-    if (result)
+    if (result) {
         return "true";
-    else
+    }
+    else {
         return "false";
+    }
 }
 
 
@@ -63,19 +94,19 @@ $(document).ready(function () {
     $(".zero").click(function () {
         const Btn = $(".zero").val();
         const disp = $(".current-display").val()
-        if(disp[0] == "0") {
-            if(disp.length < 2) {
+        if (disp[0] == "0") {
+            if (disp.length < 2) {
                 $(".current-display").val(disp)
             }
-            else{
+            else {
                 $(".current-display").val(disp + Btn)
             }
-           
+
         }
-        else{
+        else {
             $(".current-display").val(disp + Btn)
         }
-        
+
     })
 
     // number one
@@ -85,29 +116,29 @@ $(document).ready(function () {
         $(".current-display").val(disp + Btn)
     })
 
-     // number two
-     $(".two").click(function () {
+    // number two
+    $(".two").click(function () {
         const Btn = $(".two").val();
         const disp = $(".current-display").val()
         $(".current-display").val(disp + Btn)
     })
 
-     // number three
-     $(".three").click(function () {
+    // number three
+    $(".three").click(function () {
         const Btn = $(".three").val();
         const disp = $(".current-display").val()
         $(".current-display").val(disp + Btn)
     })
 
-     // number four
-     $(".four").click(function () {
+    // number four
+    $(".four").click(function () {
         const Btn = $(".four").val();
         const disp = $(".current-display").val()
         $(".current-display").val(disp + Btn)
     })
 
-     // number five
-     $(".five").click(function () {
+    // number five
+    $(".five").click(function () {
         const Btn = $(".five").val();
         const disp = $(".current-display").val()
         $(".current-display").val(disp + Btn)
@@ -167,7 +198,7 @@ $(document).ready(function () {
     // decimal point
 
     $(".decimal").click(function () {
-        const numBtn = $(".decimal").val(); 
+        const numBtn = $(".decimal").val();
         const disp = $(".current-display").val();
         let decimal = numberTest(disp);
 
@@ -177,8 +208,14 @@ $(document).ready(function () {
                 $(".current-display").val(disp + numBtn);
             }
             else {
-                if (disp == "0") {
+                if (disp[0] == "0" && disp.length == 1) {
                     $(".current-display").val(disp + numBtn);
+                }
+                else if (disp[disp.length - 1] >= 0 && disp[disp.length - 1] != "." && decimal === "false") {
+                    $(".current-display").val(disp + numBtn);
+                }
+                else {
+                    $(".current-display").val(disp);
                 }
             }
         }
@@ -194,11 +231,39 @@ $(document).ready(function () {
         $(".current-display").val(newDisp);
     })
 
+    //clear button
+    $(".clear").click(function() {
+        $(".previous-display").val("")
+        $(".current-display").val("")
+
+    })
+
     //equate button
     $(".equate").click(function () {
         const disp = $(".current-display").val()
-        const pDisp = $(".previous-display").val()
-        con
+        let pDisp = $(".previous-display").val()
+        if (pDisp == "" && disp !== "") {
+            let pDispNone = "0";
+            finalResult = equateNone(pDispNone, disp)
+            $(".current-display").val(finalResult);
+            $(".previous-display").val("")
+        }
+        else if (pDisp != "" && disp == "") {
+            finalResult = slice(pDisp)
+            $(".current-display").val(finalResult);
+            $(".previous-display").val("")
+        }
+        else if(pDisp == "" && disp == "") {
+            $(".current-display").val("")
+
+        }
+        else {
+            finalResult = equate(pDisp, disp)
+            $(".current-display").val(finalResult);
+            $(".previous-display").val("")
+
+        }
+
     })
 
 
@@ -207,7 +272,7 @@ $(document).ready(function () {
 
     //addition settings
     $(".plus").click(function () {
-        const numBtn = $(".plus").val();
+        const btn = $(".plus").val();
         const disp = $(".current-display").val()
         let pDisp = $(".previous-display").val()
 
@@ -216,20 +281,46 @@ $(document).ready(function () {
             //checking if current display is positive or negative number
             if (disp >= 0 || disp < 0) {
                 pDisp = $(".previous-display").val(disp);
-                $(".previous-display").val(disp + numBtn);
+                $(".previous-display").val(disp + btn);
+                $(".current-display").val("");
+            }
+            else {
                 $(".current-display").val("");
             }
         }
 
+
         // both display have values
         else if (pDisp != "" && disp != "") {
-            if (disp > 0 || disp < 0) {
-                pDisp;
-                update = add(pDisp, disp);
+            //check if display is an int
+            if (disp >= 0 || disp < 0) {
+                //check if the operators are equal
+                if (pDisp[pDisp.length - 1] == btn) {
+                    update = add(pDisp, disp);
 
-                $(".previous-display").val(update + numBtn);
-                $(".current-display").val("");
+                    $(".previous-display").val(update + btn);
+                    $(".current-display").val("");
+                }
+                else {
+                    if (pDisp[pDisp.length - 1] == "-") {
+                        update = sub(pDisp, disp);
 
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else if (pDisp[pDisp.length - 1] == "×") {
+                        update = multi(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else {
+                        update = divide(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                }
             }
             else {
                 $(".current-display").val("");
@@ -238,9 +329,9 @@ $(document).ready(function () {
 
     })
 
-     //subtraction settings
-     $(".minus").click(function () {
-        const numBtn = $(".minus").val();
+    //subtraction settings
+    $(".minus").click(function () {
+        const btn = $(".minus").val();
         const disp = $(".current-display").val()
         let pDisp = $(".previous-display").val()
 
@@ -249,20 +340,44 @@ $(document).ready(function () {
             //checking if current display is positive or negative number
             if (disp >= 0 || disp < 0) {
                 pDisp = $(".previous-display").val(disp);
-                $(".previous-display").val(disp + numBtn);
+                $(".previous-display").val(disp + btn);
                 $(".current-display").val("");
             }
         }
 
         // both display have values
         else if (pDisp != "" && disp != "") {
-            if (disp > 0 || disp < 0) {
-                pDisp;
-                update = sub(pDisp, disp);
+            //check if display is an integer
+            if (disp >= 0 || disp < 0) {
+                //check if the operators are equal
+                if (pDisp[pDisp.length - 1] == btn) {
 
-                $(".previous-display").val(update + numBtn);
-                $(".current-display").val("");
+                    update = sub(pDisp, disp);
 
+                    $(".previous-display").val(update + btn);
+                    $(".current-display").val("");
+
+                }
+                else {
+                    if (pDisp[pDisp.length - 1] == "+") {
+                        update = add(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else if (pDisp[pDisp.length - 1] == "×") {
+                        update = multi(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else {
+                        update = divide(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                }
             }
             else {
                 $(".current-display").val("");
@@ -272,9 +387,9 @@ $(document).ready(function () {
     })
 
 
-     //multiplication settings
-     $(".multiply").click(function () {
-        const numBtn = $(".multiply").val();
+    //multiplication settings
+    $(".multiply").click(function () {
+        const btn = $(".multiply").val();
         const disp = $(".current-display").val()
         let pDisp = $(".previous-display").val()
 
@@ -283,30 +398,53 @@ $(document).ready(function () {
             //checking if current display is positive or negative number
             if (disp >= 0 || disp < 0) {
                 pDisp = $(".previous-display").val(disp);
-                $(".previous-display").val(disp + numBtn);
+                $(".previous-display").val(disp + btn);
                 $(".current-display").val("");
             }
         }
 
         // both display have values
         else if (pDisp != "" && disp != "") {
-            if (disp > 0 || disp < 0) {
-                pDisp;
-                update = multi(pDisp, disp);
+            //check if display is an integer
+            if (disp >= 0 || disp < 0) {
+                //check if the operators are equal
+                if (pDisp[pDisp.length - 1] == btn) {
 
-                $(".previous-display").val(update + numBtn);
-                $(".current-display").val("");
+                    update = multi(pDisp, disp);
 
+                    $(".previous-display").val(update + btn);
+                    $(".current-display").val("");
+
+                }
+                else {
+                    if (pDisp[pDisp.length - 1] == "+") {
+                        update = add(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else if (pDisp[pDisp.length - 1] == "-") {
+                        update = sub(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else {
+                        update = divide(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                }
             }
             else {
                 $(".current-display").val("");
             }
         }
-
     })
 
-     //division settings
-     $(".division").click(function () {
+    //division settings
+    $(".division").click(function () {
         const numBtn = $(".division").val();
         const disp = $(".current-display").val()
         let pDisp = $(".previous-display").val()
@@ -323,25 +461,58 @@ $(document).ready(function () {
 
         // both display have values
         else if (pDisp != "" && disp != "") {
-            if (disp > 0 || disp < 0) {
-                pDisp;
-                update = divide(pDisp, disp);
+            //check if display is an integer
+            if (disp >= 0 || disp < 0) {
+                //check if the operators are equal
+                if (pDisp[pDisp.length - 1] == btn) {
 
-                $(".previous-display").val(update + numBtn);
-                $(".current-display").val("");
+                    update = divide(pDisp, disp);
 
+                    $(".previous-display").val(update + btn);
+                    $(".current-display").val("");
+
+                }
+                else {
+                    if (pDisp[pDisp.length - 1] == "+") {
+                        update = add(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else if (pDisp[pDisp.length - 1] == "*") {
+                        update = multi(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                    else {
+                        update = sub(pDisp, disp);
+
+                        $(".previous-display").val(update + btn);
+                        $(".current-display").val("");
+                    }
+                }
             }
             else {
                 $(".current-display").val("");
             }
         }
-
     })
 
+    //The percentage function
 
 
-
-
+    $(".percent").click(function () {
+        const btn = $(".percent").val();
+        const disp = $(".current-display").val()
+        percentage = percent(disp);
+        if (disp == "") {
+            $(".current-display").val("");
+        }
+        else {
+            $(".current-display").val(percentage);
+        }
+    })
 })
 
 
